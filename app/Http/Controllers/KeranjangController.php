@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Keranjang;
+use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KeranjangController extends Controller
@@ -14,7 +17,11 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        //
+        $produks = Produk::all();
+        $users = User::where('role', 'costumer')->get();
+        $keranjangs = Keranjang::where('status', 'keranjang')->with('produk', 'user')->latest()->get();
+        return view('admin.keranjang.index', compact('keranjangs','produks','users',));
+
     }
 
     /**
@@ -24,7 +31,10 @@ class KeranjangController extends Controller
      */
     public function create()
     {
-        //
+        // $produks = Produk::all();
+        // $users = User::where('role', 'costumer')->get();
+        // return view('admin.keranjang.create', compact('produks', 'users'));
+
     }
 
     /**
@@ -35,7 +45,36 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'produk_id' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        $cek_keranjangs = Keranjang::where('user_id', $request->user_id)->where('produk_id', $request->produk_id)->first();
+
+        if (!empty($cek_keranjangs)) {
+            $keranjangs = Keranjang::where('user_id', $request->user_id)->where('produk_id', $request->produk_id)->first();
+            $keranjangs->jumlah += $request->jumlah;
+            $diskon = (($keranjangs->produk->diskon / 100) * $keranjangs->produk->harga);
+            $harga = ($keranjangs->produk->harga * $request->jumlah) - $diskon;
+            $keranjangs->total_harga += $harga;
+            $keranjangs->save();
+            return redirect()
+                ->route('keranjang.index')->with('success', 'Data has been added');
+        } else {
+            $keranjangs = new Keranjang();
+            $keranjangs->user_id = $request->user_id;
+            $keranjangs->produk_id = $request->produk_id;
+            $keranjangs->jumlah = $request->jumlah;
+            $diskon = (($keranjangs->produk->diskon / 100) * $keranjangs->produk->harga);
+            $keranjangs->total_harga = ($keranjangs->produk->harga * $request->jumlah) - $diskon;
+            $keranjangs->save();
+            return redirect()
+                ->route('keranjang.index')->with('success', 'Data has been added');
+        }
+
     }
 
     /**
@@ -44,7 +83,7 @@ class KeranjangController extends Controller
      * @param  \App\Models\Keranjang  $keranjang
      * @return \Illuminate\Http\Response
      */
-    public function show(Keranjang $keranjang)
+    public function show($id)
     {
         //
     }
@@ -55,9 +94,13 @@ class KeranjangController extends Controller
      * @param  \App\Models\Keranjang  $keranjang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Keranjang $keranjang)
+    public function edit($id)
     {
-        //
+        $keranjangs = Keranjang::findOrFail($id);
+        $produks = Produk::all();
+        $users = User::all();
+        return view('admin.keranjang.edit', compact('keranjangs', 'produks', 'users'));
+
     }
 
     /**
@@ -67,9 +110,25 @@ class KeranjangController extends Controller
      * @param  \App\Models\Keranjang  $keranjang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Keranjang $keranjang)
+    public function update(Request $request, $id)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'user_id' => 'required',
+            'produk_id' => 'required',
+            'jumlah' => 'required',
+        ]);
+
+        $keranjangs = Keranjang::findOrFail($id);
+        $keranjangs->user_id = $request->user_id;
+        $keranjangs->produk_id = $request->produk_id;
+        $keranjangs->jumlah = $request->jumlah;
+        $diskon = (($keranjangs->produk->diskon / 100) * $keranjangs->produk->harga);
+        $keranjangs->total_harga = ($keranjangs->produk->harga * $request->jumlah) - $diskon;
+        $keranjangs->save();
+        return redirect()
+            ->route('keranjang.index')->with('success', 'Data has been edited');
+
     }
 
     /**
@@ -78,8 +137,11 @@ class KeranjangController extends Controller
      * @param  \App\Models\Keranjang  $keranjang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Keranjang $keranjang)
+    public function destroy($id)
     {
-        //
-    }
+        $keranjangs = Keranjang::findOrFail($id);
+        $keranjangs->delete();
+        return redirect()
+            ->route('keranjang.index')->with('success', 'Data has been deleted');
+}
 }

@@ -87,6 +87,11 @@
                         <div data-i18n="produk">Produk</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="/admin/keranjang" class="menu-link">
+                        <div data-i18n="keranjang">Keranjang</div>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
