@@ -10,7 +10,7 @@
             </button>
             @include('admin.produk.create')
             <button type="button" class="btn mb-3 btn-primary float-end mx-2" data-bs-toggle="modal"
-                data-bs-target="#stokModal">
+                data-bs-target="#stokModal1">
                 Tambah Stok
             </button>
             @include('admin.produk.stok')

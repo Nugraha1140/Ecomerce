@@ -92,6 +92,11 @@
                         <div data-i18n="keranjang">Keranjang</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="/admin/stok" class="menu-link">
+                        <div data-i18n="stok">Stok</div>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

@@ -33,7 +33,8 @@
 <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
 
 <!-- Page CSS -->
-
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Helpers -->
 <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
 

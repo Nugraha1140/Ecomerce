@@ -71,7 +71,7 @@
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
@@ -82,6 +82,14 @@
                             </form>
 
                         </a>
+                    </li> --}}
+                    <li>
+                        <form id="logOut" action="/logout" method="POST">
+                            @csrf
+                            <a class="dropdown-item" id="logOut"><i class="bx bx-power-off me-2"></i>
+                                Log Out
+                            </a>
+                        </form>
                     </li>
                 </ul>
             </li>
@@ -89,3 +97,20 @@
         </ul>
     </div>
 </nav>
+<script>
+    const logOut = document.getElementById('logOut');
+    logOut.addEventListener('click', function() {
+        Swal.fire({
+            title: 'Apa Anda Yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#7066e0',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'keluar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#logOut').submit()
+            }
+        });
+    });
+</script>
