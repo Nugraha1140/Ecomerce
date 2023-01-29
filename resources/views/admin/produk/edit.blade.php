@@ -175,26 +175,28 @@
                                             <form action="{{ Route('image.destroy', $img->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                                    data-target="#defaultModal"> Hapus </button>
-                                                <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog"
-                                                    aria-labelledby="defaultModalLabel {{ $img->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalCenter{{ $img->id }}">Hapus</button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modalCenter{{ $img->id }}"
+                                                    tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title " id="defaultModalLabel">Apakah
-                                                                    Anda Yakin</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                <h5 class="modal-title" id="modalCenterTitle">Apakah Anda
+                                                                    Yakin?
+                                                                </h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn mb-2 btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                    Kembali
+                                                                </button>
                                                                 <button type="submit"
-                                                                    class="btn mb-2 btn-primary">Hapus</button>
+                                                                    class="btn btn-danger">Hapus</button>
                                                             </div>
                                                         </div>
                                                     </div>

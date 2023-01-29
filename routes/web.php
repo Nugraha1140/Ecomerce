@@ -8,6 +8,8 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/image', ImageController::class);
     Route::resource('/keranjang', KeranjangController::class);
     Route::resource('/stok', StokController::class);
+    Route::resource('/payment', PaymentController::class);
+    Route::resource('/transaksi', TransaksiController::class);
     Route::get('getSub_kategori/{id}', [SubKategoriController::class, 'getSubKategori']);
 
 });

@@ -57,7 +57,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        <li class="menu-item {{ request()->is('home') ? 'active' : '' }}">
             <a href="/home" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -65,36 +65,46 @@
         </li>
 
         <!-- Components -->
-        <li class="menu-item">
+        <li class="menu-item ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Components">Components</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/kategori') ? 'active' : '' }}">
                     <a href="/admin/kategori" class="menu-link">
                         <div data-i18n="kategori">Kategori</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/subkategori') ? 'active' : '' }}">
                     <a href="/admin/subkategori" class="menu-link">
                         <div data-i18n="subkategori">SubKategori</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/produk') ? 'active' : '' }}">
                     <a href="/admin/produk" class="menu-link">
                         <div data-i18n="produk">Produk</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/keranjang') ? 'active' : '' }}">
                     <a href="/admin/keranjang" class="menu-link">
                         <div data-i18n="keranjang">Keranjang</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ request()->is('admin/stok') ? 'active' : '' }}">
                     <a href="/admin/stok" class="menu-link">
                         <div data-i18n="stok">Stok</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('admin/payment') ? 'active' : '' }}">
+                    <a href="/admin/payment" class="menu-link">
+                        <div data-i18n="payment">Payment</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
+                    <a href="/admin/transaksi" class="menu-link">
+                        <div data-i18n="transaksi">Transaksi</div>
                     </a>
                 </li>
             </ul>
