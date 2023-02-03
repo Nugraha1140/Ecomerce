@@ -19,6 +19,18 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        <strong>Nomor Telpon</strong>
+                                    </td>
+                                    <td>{{ $transaksis->notlp }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Alamat</strong>
+                                    </td>
+                                    <td>{{ $transaksis->alamat }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <strong>Nama Produk</strong>
                                     </td>
                                     <td>{{ $transaksis->keranjang->produk->nama_produk }}</td>
@@ -44,7 +56,7 @@
                             </tbody>
                             <tfoot class="table-border-bottom-0">
                                 <tr>
-                                    <th><strong> Jumlah Total Harga </strong></th>
+                                    <th><strong> Total Harga </strong></th>
                                     <th><strong><i> Rp. {{ number_format($transaksis->total_harga, 0, ',', '.') }} </i>
                                         </strong></th>
                                 </tr>
@@ -53,8 +65,8 @@
                                     <th><strong>{{ $transaksis->payment->name }}</strong></th>
                                 </tr>
                                 <tr>
-                                    <th><strong> Waktu Pemesanan </strong></th>
-                                    <th><strong>{{ $transaksis->waktu_pemesanan }}</strong></th>
+                                    <th><strong> Tanggal Pemesanan </strong></th>
+                                    <th><strong>{{ $transaksis->tanggal_pemesanan }}</strong></th>
                                 </tr>
                             </tfoot>
                         </table>

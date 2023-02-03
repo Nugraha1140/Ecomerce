@@ -23,9 +23,8 @@
                         <th>kategori</th>
                         <th>Sub kategori</th>
                         <th>Nama Produk</th>
-                        <th>Hpp</th>
                         <th>Harga</th>
-                        <th>Stock</th>
+                        <th>Stok</th>
                         <th>Diskon</th>
                         <th>Deskripsi</th>
                         <th>Action</th>
@@ -53,11 +52,6 @@
                                 <td>
                                     <div class="d-flex">
                                         {{ $pro->nama_produk }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex">
-                                        Rp. {{ number_format($pro->hpp, 0, ',', '.') }}
                                     </div>
                                 </td>
                                 <td>

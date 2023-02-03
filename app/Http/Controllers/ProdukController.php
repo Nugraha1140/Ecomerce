@@ -47,9 +47,9 @@ class ProdukController extends Controller
             'kategori_id' => 'required',
             'sub_kategori_id' => 'required',
             'nama_produk' => 'required',
-            'hpp' => 'required',
             'harga' => 'required',
             'stok' => 'required',
+            'diskon' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -57,7 +57,6 @@ class ProdukController extends Controller
         $produk->kategori_id = $request->kategori_id;
         $produk->sub_kategori_id = $request->sub_kategori_id;
         $produk->nama_produk = $request->nama_produk;
-        $produk->hpp = $request->hpp;
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
         $produk->diskon = $request->diskon;
@@ -89,7 +88,8 @@ class ProdukController extends Controller
     public function show($id)
     {
         $produk = Produk::findOrFail($id);
-        return view('admin.produk.show', compact('produk'));
+        $images = Image::where('produk_id', $id)->get();
+        return view('admin.produk.show', compact('produk','images'));
     }
 
     /**
@@ -121,9 +121,9 @@ class ProdukController extends Controller
             'kategori_id' => 'required',
             'sub_kategori_id' => 'required',
             'nama_produk' => 'required',
-            'hpp' => 'required',
             'harga' => 'required',
             'stok' => 'required',
+            // 'diskon' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -131,7 +131,6 @@ class ProdukController extends Controller
         $produk->kategori_id = $produk->kategori_id;
         $produk->sub_kategori_id = $request->sub_kategori_id;
         $produk->nama_produk = $request->nama_produk;
-        $produk->hpp = $request->hpp;
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
         $produk->diskon = $request->diskon;

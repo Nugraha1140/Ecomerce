@@ -18,9 +18,9 @@ class KeranjangController extends Controller
     public function index()
     {
         $produks = Produk::all();
-        $users = User::where('role', 'costumer')->get();
-        $keranjangs = Keranjang::where('status', 'keranjang')->with('produk', 'user')->latest()->get();
-        return view('admin.keranjang.index', compact('keranjangs','produks','users',));
+        $users = User::all();
+        $keranjangs = Keranjang::where('status', 'keranjang');
+        return view('template.user.keranjang', compact('keranjangs','produks','users',));
 
     }
 
@@ -31,9 +31,10 @@ class KeranjangController extends Controller
      */
     public function create()
     {
-        // $produks = Produk::all();
-        // $users = User::where('role', 'costumer')->get();
-        // return view('admin.keranjang.create', compact('produks', 'users'));
+        $produks = Produk::all();
+        $users = User::all();
+        $keranjangs = Keranjang::where('status', 'keranjang');
+        return view('template.user.detailproduk', compact('produks', 'users', 'keranjangs'));
 
     }
 
@@ -62,7 +63,7 @@ class KeranjangController extends Controller
             $keranjangs->total_harga += $harga;
             $keranjangs->save();
             return redirect()
-                ->route('keranjang.index')->with('success', 'Data has been added');
+                ->route('user.keranjang')->with('success', 'Data has been added');
         } else {
             $keranjangs = new Keranjang();
             $keranjangs->user_id = $request->user_id;
@@ -72,7 +73,7 @@ class KeranjangController extends Controller
             $keranjangs->total_harga = ($keranjangs->produk->harga * $request->jumlah) - $diskon;
             $keranjangs->save();
             return redirect()
-                ->route('keranjang.index')->with('success', 'Data has been added');
+                ->route('user.keranjang')->with('success', 'Data has been added');
         }
 
     }

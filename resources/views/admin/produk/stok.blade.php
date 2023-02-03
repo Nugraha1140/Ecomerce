@@ -39,9 +39,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Close
+                    Batal
                 </button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </div>
         </div>
         </form>

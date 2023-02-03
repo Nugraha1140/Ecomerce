@@ -42,11 +42,34 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Nomor Telpon</label>
+                            <input type="text" name="notlp"
+                                class="form-control mb-2  @error('notlp') is-invalid @enderror"
+                                value="{{ $transaksis->notlp }}">
+                            @error('notlp')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="example-palaceholder">Alamat</label>
+                            <textarea name="alamat" cols="20" rows="3" class="form-control  @error('alamat') is-invalid @enderror"
+                                placeholder="alamat" value="{{ $transaksis->alamat }}"></textarea>
+                            @error('alamat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Name produk</label>
                             <select name="keranjang_id" class="form-control @error('keranjang_id') is-invalid @enderror">
                                 @foreach ($keranjangs as $keranjang)
                                     @if (old('keranjang_id', $keranjang->id) == $transaksis->keranjang->id)
-                                        <option value="{{ $keranjang->id }}" selected>{{ $keranjang->produk->nama_produk }}
+                                        <option value="{{ $keranjang->id }}" selected>
+                                            {{ $keranjang->produk->nama_produk }}
                                         </option>
                                     @else
                                         <option value="{{ $keranjang->id }}">{{ $keranjang->produk->nama_produk }}
@@ -60,6 +83,26 @@
                                 </span>
                             @enderror
                         </div>
+                        {{-- <div class="mb-3">
+                            <label class="form-label">Voucher</label>
+                            <select name="voucher_id" class="form-select @error('voucher_id') is-invalid @enderror">
+                                <option value="" selected hidden>Pilih Voucher</option>
+                                @foreach ($vouchers as $voucher)
+                                    <option value="{{ $voucher->id }}">{{ $voucher->kode_voucher }}
+                                    </option>
+                                @endforeach
+                                @foreach ($voucher_users as $voucher_user)
+                                    <option value="{{ $voucher_user->voucher->id }}">
+                                        {{ $voucher_user->voucher->kode_voucher }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('voucher_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div> --}}
                         <div class="mb-3">
                             <label class="form-label">Metode Pembayaran</label>
                             <select name="payment_id" class="form-select @error('payment_id') is-invalid @enderror">

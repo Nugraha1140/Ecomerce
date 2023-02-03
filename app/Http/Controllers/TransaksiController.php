@@ -49,9 +49,10 @@ class TransaksiController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required',
+            'notlp' => 'required',
+            'alamat' => 'required',
             'keranjang_id' => 'required',
             'payment_id' => 'required',
-            'waktu_pemesanan' => 'required',
             'kode_transaksi' => 'unique:transaksis',
         ]);
 
@@ -65,14 +66,16 @@ class TransaksiController extends Controller
         } else {
             $kode = '001';
         }
-        $transaksis->kode_transaksi = 'TECH-' . date('dmy') . $kode;
+        $transaksis->kode_transaksi = 'TECH-' . $kode .date('dmy')  ;
         $transaksis->user_id = $request->user_id;
+        $transaksis->notlp = $request->notlp;
+        $transaksis->alamat = $request->alamat;
         $transaksis->keranjang_id = $request->keranjang_id;
         $transaksis->produk_id = $transaksis->keranjang->produk_id;
         $transaksis->jumlah = $transaksis->keranjang->jumlah;
         $transaksis->payment_id = $request->payment_id;
-        $transaksis->waktu_pemesanan = $request->waktu_pemesanan;
-        $transaksis->total_harga = $transaksis->keranjang->total_harga;
+        $transaksis->tanggal_pemesanan = now()->format('Y-m-d H:i:s');
+        $transaksis->total_harga = $transaksis->keranjang->total_harga ;
 
          // stok produk
          $produks = Produk::findOrFail($transaksis->keranjang->produk_id);
@@ -140,7 +143,8 @@ class TransaksiController extends Controller
         $rules = [
             'keranjang_id' => 'required',
             'payment_id' => 'required',
-            'waktu_pemesanan' => 'required',
+            'notlp' => 'required',
+            'alamat' => 'required',
         ];
 
         if ($request->kode_transaksi != $transaksis->kode_transaksi) {
@@ -150,9 +154,11 @@ class TransaksiController extends Controller
 
         $transaksis->kode_transaksi = $request->kode_transaksi;
         $transaksis->user_id = $request->user_id;
+        $transaksis->notlp = $request->notlp;
+        $transaksis->alamat = $request->alamat;
         $transaksis->keranjang_id = $request->keranjang_id;
         $transaksis->payment_id = $request->payment_id;
-        $transaksis->waktu_pemesanan = $request->waktu_pemesanan;
+        $transaksis->tanggal_pemesanan = now()->format('D-m-y H:i:s');
         $transaksis->total_harga = $transaksis->keranjang->total_harga;
         $transaksis->save();
         return redirect()

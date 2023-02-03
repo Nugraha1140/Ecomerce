@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('produk_id');
             $table->foreign('produk_id')->references('id')->on('produks')->onDelete('CASCADE');
             $table->integer('jumlah');
+            $table->enum('status', ['Masuk', 'Keluar']);
             $table->timestamps();
         });
     }

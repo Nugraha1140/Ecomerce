@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Name Kategori</label>
+                                    <label class="form-label">Nama Kategori</label>
                                     <select name="kategori_id" id="kategori"
                                         class="form-control @error('kategori_id') is-invalid @enderror">
                                         @foreach ($kategoris as $kategori)
@@ -65,17 +65,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="example-palaceholder">Hpp Produk</label>
-                                    <input type="number" name="hpp" class="form-control"
-                                        @error('hpp') is-invalid @enderror placeholder="Hpp Produk"
-                                        value="{{ $produk->hpp }}">
-                                    @error('hpp')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group mb-3">
                                     <label for="example-palaceholder">Harga Produk</label>
                                     <input type="number" name="harga" class="form-control"
                                         @error('harga') is-invalid @enderror placeholder="Harga Produk"
@@ -87,7 +76,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="example-palaceholder">Stock Produk</label>
+                                    <label for="example-palaceholder">Stok Produk</label>
                                     <input type="number" name="stok"
                                         class="form-control @error('stok') is-invalid @enderror" placeholder="stok Produk"
                                         value="{{ $produk->stok }}">
@@ -148,12 +137,11 @@
                         @csrf
                         <input type="hidden" name="produk_id" value="{{ $produk->id }}">
                         <div class="mb-3">
-                            <label class="form-label">gambar produk</label>
+                            <label class="form-label">Gambar Produk</label>
                             <div class="custom-file">
-                                <input type="file"
-                                    class="custom-file-input @error('gambar_produk') is-invalid @enderror"
+                                <input type="file" class="custom-file-input @error('gambar_produk') is-invalid @enderror"
                                     name="gambar_produk[]" value="{{ old('gambar_produk') }}" multiple>
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <label class="custom-file-label" for="customFile">Pilih Gambar</label>
                                 @error('gambar_produk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -47,6 +47,7 @@ class StokController extends Controller
 
         $stok = new Stok();
         $stok->produk_id = $request->produk_id;
+        $stok->status = 'Masuk';
         $stok->jumlah = $request->jumlah;
         $stok->save();
           $produk = Produk::findOrFail($request->produk_id);

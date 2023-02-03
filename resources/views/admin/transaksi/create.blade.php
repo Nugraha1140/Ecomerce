@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="traModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="traModalLabel">Transaksi</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -25,6 +25,28 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Nomor Telpon</label>
+                            <input type="text" name="notlp"
+                                class="form-control mb-2  @error('notlp') is-invalid @enderror" placeholder="notlp"
+                                value="">
+                            @error('notlp')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="example-palaceholder">Alamat</label>
+                            <textarea name="alamat" cols="20" rows="3" class="form-control  @error('alamat') is-invalid @enderror"
+                                placeholder="alamat" value="{{ old('alamat') }}"></textarea>
+                            @error('alamat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Name Produk</label>
                             <select name="keranjang_id" class="form-select @error('keranjang_id') is-invalid @enderror">
                                 @foreach ($keranjangs as $keranjang)
@@ -39,17 +61,6 @@
                                 </span>
                             @enderror
                         </div>
-                        {{-- <div class="mb-3">
-                            <label class="form-label">jumlah Produk</label>
-                            <input type="number" name="jumlah"
-                                class="form-control mb-2  @error('jumlah') is-invalid @enderror" placeholder="jumlah"
-                                value="1">
-                            @error('jumlah')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div> --}}
                         <div class="mb-3">
                             <label class="form-label">Metode Pembayaran</label>
                             <select name="payment_id" class="form-select @error('payment_id') is-invalid @enderror">
@@ -65,7 +76,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label class="form-label">Waktu Pemesanan</label>
                             <input type="date" name="waktu_pemesanan"
                                 class="form-control mb-2  @error('waktu_pemesanan') is-invalid @enderror"
@@ -75,7 +86,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
             </div>
             <div class="modal-footer">

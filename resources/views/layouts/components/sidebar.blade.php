@@ -63,8 +63,50 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->is('admin/kategori') ? 'active' : '' }}">
+            <a href="/admin/kategori" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Kategori</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/subkategori') ? 'active' : '' }}"">
+            <a href="/admin/subkategori" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Sub Kategori</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/produk') ? 'active' : '' }}">
+            <a href="/admin/produk" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Produk</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/stok') ? 'active' : '' }}">
+            <a href="/admin/stok" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Data Barang</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/payment') ? 'active' : '' }}">
+            <a href="/admin/payment" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Payment</div>
+            </a>
+        </li>
+        {{-- <li class="menu-item  {{ request()->is('admin/keranjang') ? 'active' : '' }}">
+            <a href="/admin/keranjang" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Keranjang</div>
+            </a>
+        </li> --}}
+        <li class="menu-item {{ request()->is('admin/transaksi') ? 'active' : '' }}">
+            <a href="/admin/transaksi" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Transaksi</div>
+            </a>
+        </li>
 
-        <!-- Components -->
+        {{-- <!-- Components -->
         <li class="menu-item ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -106,8 +148,18 @@
                     <a href="/admin/transaksi" class="menu-link">
                         <div data-i18n="transaksi">Transaksi</div>
                     </a>
-                </li>
-            </ul>
-        </li>
+                </li> --}}
+        {{-- <li class="menu-item {{ request()->is('admin/voucher') ? 'active' : '' }}">
+                    <a href="/admin/voucher" class="menu-link">
+                        <div data-i18n="voucher">Voucher</div>
+                    </a>
+                </li> --}}
+        {{-- <li class="menu-item {{ request()->is('admin/voucheruser') ? 'active' : '' }}">
+                    <a href="/admin/voucheruser" class="menu-link">
+                        <div data-i18n="voucheruser">Voucher User</div>
+                    </a>
+                </li> --}}
+    </ul>
+    </li>
     </ul>
 </aside>

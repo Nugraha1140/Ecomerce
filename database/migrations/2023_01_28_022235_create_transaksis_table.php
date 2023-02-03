@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('kode_transaksi');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('notlp');
+            $table->text('alamat');
             $table->unsignedBigInteger('keranjang_id');
             $table->foreign('keranjang_id')->references('id')->on('keranjangs')->onDelete('cascade');
             $table->unsignedBigInteger('produk_id');
@@ -25,8 +27,8 @@ return new class extends Migration
             $table->integer('total_harga');
             $table->unsignedBigInteger('payment_id');
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            $table->date('waktu_pemesanan');
-            $table->enum('status', ['proses', 'sukses', 'dikembalikan', 'selesai', 'pengajuan refund', 'ditolak'])->default('proses');
+            $table->date('tanggal_pemesanan');
+            $table->enum('status', ['proses', 'sukses', 'dikembalikan'])->default('proses');
             $table->timestamps();
         });
     }
