@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_kategori_id');
             $table->foreign('sub_kategori_id')->references('id')->on('sub_kategoris')->onDelete('cascade');
             $table->string('nama_produk');
+            $table->string('slug');
             $table->integer('harga');
             $table->integer('stok');
             $table->integer('diskon')->default('0');

@@ -7,6 +7,7 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
 use App\Models\SubKategori;
+use Str;
 use App\Http\Controllers\Controller;
 
 class ProdukController extends Controller
@@ -57,6 +58,7 @@ class ProdukController extends Controller
         $produk->kategori_id = $request->kategori_id;
         $produk->sub_kategori_id = $request->sub_kategori_id;
         $produk->nama_produk = $request->nama_produk;
+        $produk->slug = Str::slug($request->nama_produk, '-');
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
         $produk->diskon = $request->diskon;
@@ -131,6 +133,7 @@ class ProdukController extends Controller
         $produk->kategori_id = $produk->kategori_id;
         $produk->sub_kategori_id = $request->sub_kategori_id;
         $produk->nama_produk = $request->nama_produk;
+        $produk->slug = Str::slug($request->nama_produk, '-');
         $produk->harga = $request->harga;
         $produk->stok = $request->stok;
         $produk->diskon = $request->diskon;

@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_transaksi');
+            // $table->string('kode_transaksi');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('notlp');
-            $table->text('alamat');
+            // $table->string('notlp');
+            // $table->text('alamat');
             $table->unsignedBigInteger('keranjang_id');
             $table->foreign('keranjang_id')->references('id')->on('keranjangs')->onDelete('cascade');
             $table->unsignedBigInteger('produk_id');
             $table->integer('jumlah');
             $table->integer('total_harga');
-            $table->unsignedBigInteger('payment_id');
-            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            $table->date('tanggal_pemesanan');
-            $table->enum('status', ['proses', 'sukses', 'dikembalikan'])->default('proses');
+            // $table->unsignedBigInteger('payment_id');
+            // $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
+            // $table->date('tanggal_pemesanan');
+            // $table->enum('status', ['proses', 'sukses', 'dikembalikan'])->default('proses');
             $table->timestamps();
         });
     }

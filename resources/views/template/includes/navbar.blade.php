@@ -10,7 +10,7 @@
               </ul>
               <ul class="header-links pull-right">
                   <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                  <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                  <li><a href="/profile"><i class="fa fa-user"></i> My Account</a></li>
               </ul>
           </div>
       </div>
@@ -132,11 +132,13 @@
           <div id="responsive-nav">
               <!-- NAV -->
               <ul class="main-nav nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Categories</a></li>
-                  <li><a href="#">Laptops</a></li>
-                  <li><a href="#">Smartphones</a></li>
-                  <li><a href="#">Cameras</a></li>
+                  <li class=" nav-item {{ request()->is('user') ? 'active' : '' }}"><a href="/user">Home</a></li>
+                  <li class=" nav-item {{ request()->is('produk') ? 'active' : '' }}"><a href="/produk">Product</a>
+                  </li>
+                  <li class=" nav-item {{ request()->is('keranjang') ? 'active' : '' }}"><a
+                          href="/keranjang">Keranjang</a></li>
+                  {{-- <li><a href="#">Smartphones</a></li>
+                  <li><a href="#">Cameras</a></li> --}}
               </ul>
               <!-- /NAV -->
           </div>

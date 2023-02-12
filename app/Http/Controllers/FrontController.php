@@ -10,12 +10,10 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-    public function cartuser(Request $request)
+    public function profileuser(Request $request)
     {
-        $produks = Produk::all();
-        $users = User::where('role', 'costumer')->get();
-        $keranjangs = Keranjang::where('status', 'keranjang')->with('produk', 'user')->latest()->get();
-        return view('template.user.keranjang', compact('keranjangs','produks','users',));
+        $users = User::all();
+        return view('template.user.profile', compact('users'));
     }
     public function homeuser(Request $request)
     {
@@ -26,22 +24,14 @@ class FrontController extends Controller
     }
     public function produkuser(Request $request)
     {
-        $produk = Produk::all();
-        $images = Image::all();
-        $kategoris = Kategori::all();
-        return view('template.user.produk', compact('produk','kategoris','images'));
+        $produk = Produk::with('kategori','image')->get();
+        // $images = Image::all();
+        // $kategoris = Kategori::all();
+        return view('template.user.produk', compact('produk'));
     }
 
-    public function produkdetail($id)
+    public function produkdetail(Produk $produk, Image $images)
     {
-        // $pro = $request->all();
-        $produk = Produk::findOrFail($id);
-        $images = Image::all();
-        // $images = Image::find(1);
-        // $kategoris = Kategori::all();
-        // if($pro){
-        //     $produk = Produk::where('kategori_id', $pro)->get();
-        // }
         return view('template.user.detailproduk', compact('produk', 'images'));
     }
 }

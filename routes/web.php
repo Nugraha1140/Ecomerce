@@ -26,7 +26,7 @@ use App\Http\Controllers\FrontController;
 */
 
 Route::get('/', function () {
-    return view('template.user.keranjang');
+    return view('user');
 });
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', function () {
@@ -38,7 +38,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/image', ImageController::class);
     Route::resource('/stok', StokController::class);
     Route::resource('/payment', PaymentController::class);
-    Route::resource('/transaksi', TransaksiController::class);
+    // Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/voucher',VoucherController::class);
     Route::resource('/voucheruser',VoucherUserController::class);
     Route::get('getSub_kategori/{id}', [SubKategoriController::class, 'getSubKategori']);
@@ -47,8 +47,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 Auth::routes();
 Route::group(['prefix' => '/'], function () {
 Route::get('/produk', [FrontController::class, 'produkuser']);
-Route::get('/detailproduk/{id}', [FrontController::class, 'produkdetail']);
+Route::get('/detailproduk/{produk}', [FrontController::class, 'produkdetail']);
 Route::resource('/keranjang', App\Http\Controllers\KeranjangController::class);
+Route::resource('/checkout', App\Http\Controllers\CheckoutController::class);
+Route::get('/profile', [App\Http\Controllers\FrontController::class, 'profileuser']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -31,5 +31,8 @@ class Produk extends Model
     {
         return $this->hasMany(Keranjang::class);
     }
+    public  function getRouteKeyName(){
+        return 'slug';
+    }
 
 }

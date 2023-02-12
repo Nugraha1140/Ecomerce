@@ -31,81 +31,53 @@
                                     <th class="product-price">Harga</th>
                                     <th class="product-quantity">Jumlah</th>
                                     <th class="product-total">Total</th>
+                                    <th class="product-disc">Diskon</th>
+                                    <th class="product-totalharga">Total Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-body-row">
+                                @if (count($keranjangs))
                                     @foreach ($keranjangs as $keranjang)
-                                        <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                        </td>
-                                        <td class="product-image"><img
-                                                src="{{ asset('components/img/products/product-img-1.jpg') }}"
-                                                alt=""></td>
-                                        <td class="product-name">{{ $keranjang->produk->nama_produk }}</td>
-                                        <td class="product-price"> RP.
-                                            {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
-                                        <td class="product-quantity"><input type="number" name="jumlah" value="0">
-                                        </td>
-                                        <td class="product-total">{{ $keranjang->jumlah }}</td>
-                                        <td class="product-totalharga">RP.
-                                            {{ number_format($keranjang->total_harga, 0, ',', '.') }}</td>
+                                        <form action="{{ route('checkout.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="keranjang_id" value="{{ $keranjang->id }}">
+                                            <input type="hidden" name="user_id" value="1">
+                                            {{-- <input type="hidden" name="produk_id" value="{{ $keranjang->produk->id }}"> --}}
+                                            <tr class="table-body-row">
+                                                <td class="product-remove"> <input type="checkbox" name="produk_id[]"
+                                                        value="{{ $keranjang->produk->id }}"></td>
+                                                <td class="product-image"><img
+                                                        src="{{ asset($keranjang->produk->image[0]->gambar_produk) }}"
+                                                        alt=""></td>
+                                                <td class="product-name">{{ $keranjang->produk->nama_produk }}</td>
+                                                <td class="product-price"> RP.
+                                                    {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
+                                                <td class="product-quantity"><input type="number" name="jumlah"
+                                                        value="{{ $keranjang->jumlah }}">
+                                                </td>
+                                                <td class="product-total">{{ $keranjang->jumlah }}</td>
+                                                <td class="product-disc">{{ $keranjang->produk->diskon }}</td>
+                                                <td class="product-totalharga">RP.
+                                                    {{ number_format($keranjang->total_harga, 0, ',', '.') }}</td>
+                                            </tr>
                                     @endforeach
-                                </tr>
+                                @endif
+                                <button class="boxed-btn" type="submit">
+                                    Checkout</button>
 
-                                {{-- <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                    </td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-2.jpg"
-                                            alt=""></td>
-                                    <td class="product-name">Berry</td>
-                                    <td class="product-price">$70</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">1</td>
-                                </tr>
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                    </td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-3.jpg"
-                                            alt=""></td>
-                                    <td class="product-name">Lemon</td>
-                                    <td class="product-price">$35</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">1</td>
-                                </tr> --}}
+                                </form>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <div class="total-section">
-                        <table class="total-table">
-                            <thead class="total-table-head">
-                                <tr class="table-total-row">
-                                    <th>Total</th>
-                                    <th>Harga</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr class="total-data">
-                                    <td><strong>Total Harga: </strong></td>
-                                    {{-- <td> RP. {{ number_format($keranjang->produk->total_harga, 0, ',', '.') }}</td> --}}
-                                </tr>
-
-                                {{-- <tr class="total-data">
-                                    <td><strong>Shipping: </strong></td>
-                                    <td>$45</td>
-                                </tr>
-                                <tr class="total-data">
-                                    <td><strong>Total: </strong></td>
-                                    <td>$545</td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
                         <div class="cart-buttons">
-                            <a href="cart.html" class="boxed-btn">Update Cart</a>
-                            <a href="checkout.html" class="boxed-btn black">Check Out</a>
+                            <a href="#" class="boxed-btn">Update Cart</a>
+                            <a href="#" class="boxed-btn">Checkout</a>
+                            <button class="boxed-btn" type="submit">
+                                Checkout</button>
                         </div>
                     </div>
 
@@ -118,7 +90,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

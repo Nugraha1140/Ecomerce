@@ -189,7 +189,7 @@
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
                     <!-- store top filter -->
-                    <div class="store-filter clearfix">
+                    {{-- <div class="store-filter clearfix">
                         <div class="store-sort">
                             <label>
                                 Sort By:
@@ -211,7 +211,7 @@
                             <li class="active"><i class="fa fa-th"></i></li>
                             <li><a href="#"><i class="fa fa-th-list"></i></a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- /store top filter -->
 
                     <!-- store products -->
@@ -230,16 +230,16 @@
                                     <div class="product-body">
                                         <p class="product-category">{{ $data->kategori->name }}</p>
                                         <h3 class="product-name"><a
-                                                href="/detailproduk/{{ $data->id }}">{{ $data->nama_produk }}</a>
+                                                href="/detailproduk/{{ $data->slug }}">{{ $data->nama_produk }}</a>
                                         </h3>
                                         <h4 class="product-price">Rp. {{ number_format($data->harga, 0, '.', '.') }}</h4>
-                                        <div class="product-rating">
+                                        {{-- <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                        </div>
+                                        </div> --}}
                                         {{-- <div class="product-btns">
                                             <button class="add-to-wishlist"><i class="fa fa-heart"></i><span
                                                     class="tooltipp">add to wishlist</span></button>
@@ -251,7 +251,7 @@
                                     <div class="add-to-cart">
 
                                         <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a
-                                                href="/detailproduk/{{ $data->id }}">Detail</a></button>
+                                                href="/detailproduk/{{ $data->slug }}">Detail</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
     <!-- /SECTION -->
 
     <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
+    {{-- <div id="newsletter" class="section">
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -313,7 +313,7 @@
             <!-- /row -->
         </div>
         <!-- /container -->
-    </div>
+    </div> --}}
     <!-- /NEWSLETTER -->
 @endsection
 
